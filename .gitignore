@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: MPL-2.0
+# Copyright (c) 2026 Kernloom Contributors
+
+/bin/
+/dist/
+/bpf/out/
+*.coverprofile
+*.test
