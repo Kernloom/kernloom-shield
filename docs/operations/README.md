@@ -40,6 +40,11 @@ sudo ./bin/klshield events
 Pinned maps are stored below `/sys/fs/bpf/kernloom_*`. The CLI reuses pinned
 maps across reloads where possible.
 
+For production installs, apply the host hardening runbook in
+`docs/operations/host-hardening.md`, run the host integration checklist in
+`docs/operations/host-integration-test.md`, and adapt the
+systemd/sysusers/tmpfiles templates under `docs/admin-template/`.
+
 ## Stop
 
 ```sh
@@ -60,3 +65,6 @@ sudo ./bin/klshield detach-xdp
   managed host because it removes active enforcement state.
 - Keep the Shield binary and BPF object version aligned. The userspace structs
   must match the loaded BPF maps.
+- Keep rollback artifacts for the previous BPF object and binary. Do not clear
+  pinned maps until KLIQ lease reconciliation confirms no managed runtime action
+  depends on them.

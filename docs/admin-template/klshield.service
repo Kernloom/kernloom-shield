@@ -1,0 +1,32 @@
+# SPDX-License-Identifier: MPL-2.0
+# Copyright (c) 2026 Kernloom Contributors
+
+[Unit]
+Description=Kernloom Shield XDP enforcement point
+Documentation=file:/usr/share/doc/kernloom-shield/operations/README.md
+After=network-online.target
+Wants=network-online.target
+ConditionPathExists=/usr/lib/kernloom-shield/xdp_kernloom_shield.bpf.o
+ConditionPathIsMountPoint=/sys/fs/bpf
+
+[Service]
+Type=oneshot
+EnvironmentFile=-/etc/kernloom/shield.env
+ExecStart=/usr/bin/klshield attach-xdp -iface ${KLSHIELD_IFACE} -obj /usr/lib/kernloom-shield/xdp_kernloom_shield.bpf.o
+ExecStop=/usr/bin/klshield detach-xdp -iface ${KLSHIELD_IFACE}
+RemainAfterExit=yes
+User=root
+Group=root
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_BPF CAP_PERFMON CAP_SYS_RESOURCE
+AmbientCapabilities=CAP_NET_ADMIN CAP_BPF CAP_PERFMON CAP_SYS_RESOURCE
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+ReadWritePaths=/sys/fs/bpf /run/kernloom-shield /var/lib/kernloom-shield
+LockPersonality=yes
+MemoryDenyWriteExecute=no
+RestrictRealtime=yes
+
+[Install]
+WantedBy=multi-user.target

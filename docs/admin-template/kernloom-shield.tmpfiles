@@ -1,0 +1,7 @@
+# SPDX-License-Identifier: MPL-2.0
+# Copyright (c) 2026 Kernloom Contributors
+
+d /etc/kernloom 0750 root root -
+d /run/kernloom-shield 0750 root root -
+d /var/lib/kernloom-shield 0750 root root -
+d /usr/lib/kernloom-shield 0755 root root -

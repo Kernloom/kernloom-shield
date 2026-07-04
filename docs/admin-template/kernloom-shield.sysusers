@@ -1,0 +1,4 @@
+# SPDX-License-Identifier: MPL-2.0
+# Copyright (c) 2026 Kernloom Contributors
+
+u kernloom-shield - "Kernloom Shield service account" /var/lib/kernloom-shield -

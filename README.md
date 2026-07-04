@@ -63,6 +63,14 @@ sudo ./bin/klshield detach-xdp -iface eth0
 The default object path for `attach-xdp` is
 `bpf/out/xdp_kernloom_shield.bpf.o`, matching `make bpf`.
 
+For production host hardening, use the operations runbook and admin templates:
+
+- `docs/operations/host-hardening.md`
+- `docs/operations/host-integration-test.md`
+- `docs/admin-template/klshield.service`
+- `docs/admin-template/kernloom-shield.sysusers`
+- `docs/admin-template/kernloom-shield.tmpfiles`
+
 ## Kernloom Boundary
 
 Kernloom Core and KLIQ decide what runtime actions should exist. The
